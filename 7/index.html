@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>dialog要素</title>
+<style></style>
+</head>
+<body>
+
+
+<dialog>
+  <form method="dialog">
+    <p>これはダイアログです。本当によろしいですか？</p>
+    <button type="submit" value="yes">はい</button>
+    <button type="submit" value="no" autofocus>いいえ</button>
+  </form>
+</dialog>
+<button id="show">ダイアログを開く</button>
+
+<script>
+var dialog = document.querySelector('dialog');
+document.querySelector('#show').addEventListener('click', function() {
+  dialog.showModal();
+}, false);
+dialog.addEventListener('cancel', function(event){
+  event.preventDefault();
+});
+dialog.addEventListener('close', function(event){
+  if (this.returnValue === 'yes') {
+    alert('はい をクリックしました。');
+  } else {
+    alert('いいえ をクリックしました。');
+  }
+});
+</script>
+
+
+</body>
+</html>

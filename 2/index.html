@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>dialog要素</title>
+<style></style>
+</head>
+<body>
+
+
+<dialog>
+  <p>これはダイアログです</p>
+  <button id="close">ダイアログを閉じる</button>
+</dialog>
+<button id="show">ダイアログを開く</button>
+
+<script>
+var dialog = document.querySelector('dialog');
+document.querySelector('#show').addEventListener('click', function() {
+  dialog.show();
+}, false);
+document.querySelector('#close').addEventListener('click', function() {
+  dialog.close();
+}, false);
+</script>
+
+
+</body>
+</html>

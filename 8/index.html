@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>dialog要素</title>
+<style>
+dialog {
+  position: absolute;
+  z-index: 1;
+}
+.highZindex {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+  width: 300px;
+  height: 300px;
+  z-index: 2147483647;
+  background-color: tomato;
+}
+</style>
+</head>
+<body>
+
+
+<dialog>
+  <p>これはダイアログです。</p>
+  <button id="close">ダイアログを閉じる</button>
+</dialog>
+<button id="show">ダイアログを開く</button>
+
+<script>
+var dialog = document.querySelector('dialog');
+document.querySelector('#show').addEventListener('click', function() {
+  dialog.showModal();
+}, false);
+document.querySelector('#close').addEventListener('click', function() {
+  dialog.close();
+}, false);
+</script>
+
+
+<div class="highZindex">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</div>
+</body>
+</html>

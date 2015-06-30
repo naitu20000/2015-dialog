@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>dialog要素</title>
+<style></style>
+</head>
+<body>
+
+
+<dialog>
+  <p>これはダイアログです</p>
+  <div>
+    <input type="text" id="input_value" value="" placeholder="何かしら入力してください">
+  </div>
+  <div>
+    <button id="close">閉じて、入力した内容をalertする</button>
+  </div>
+</dialog>
+<button id="show">ダイアログを開く</button>
+
+<script>
+var dialog = document.querySelector('dialog');
+document.querySelector('#show').addEventListener('click', function() {
+  dialog.showModal();
+}, false);
+document.querySelector('#close').addEventListener('click', function() {
+  var value = document.querySelector('#input_value').value;
+  dialog.close(value);
+}, false);
+dialog.addEventListener('close', function(event){
+  alert(this.returnValue);
+});
+</script>
+
+
+</body>
+</html>
