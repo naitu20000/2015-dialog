@@ -4,7 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 <title>dialog要素</title>
-<style></style>
+<style>
+.mod-p { color: #ccc; }
+.mod-p > a { color: #7e7eed; }
+</style>
 </head>
 <body>
 
@@ -15,12 +18,22 @@
 </dialog>
 <button id="show">モードレスダイアログを開く</button>
 
+<p class="mod-p">
+The quick brown fox jumps over the lazy dog. <a href="#">The quick brown fox jumps over the lazy dog.</a> The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. 
+</p>
+
+<p class="mod-p">
+The quick brown fox jumps over the lazy dog. <a href="#">The quick brown fox jumps over the lazy dog.</a> The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. 
+</p>
+
 <script>
 var dialog = document.querySelector('dialog');
-document.querySelector('#show').addEventListener('click', function() {
+var btn_show = document.getElementById('show');
+var btn_close = document.getElementById('close');
+btn_show.addEventListener('click', function() {
   dialog.show();
 }, false);
-document.querySelector('#close').addEventListener('click', function() {
+btn_close.addEventListener('click', function() {
   dialog.close();
 }, false);
 </script>
