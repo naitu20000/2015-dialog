@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>dialog要素</title>
+<style>
+dialog {
+  position: static;
+  left: auto;
+  right: auto;
+  width: auto;
+  height: auto;
+}
+dialog[open] {
+  display: inline-block;
+}
+</style>
+</head>
+<body>
+
+<button id="show">モードレスダイアログとして開く</button>
+<dialog>
+  <p>これはモードレスダイアログです</p>
+  <button id="close">モードレスダイアログを閉じる</button>
+</dialog>
+
+<script>
+var dialog = document.querySelector('dialog');
+var btn_show = document.getElementById('show');
+var btn_close = document.getElementById('close');
+btn_show.addEventListener('click', function() {
+  dialog.show();
+  btn_show.disabled = true;
+}, false);
+btn_close.addEventListener('click', function() {
+  dialog.close();
+  btn_show.disabled = false;
+}, false);
+</script>
+
+</body>
+</html>

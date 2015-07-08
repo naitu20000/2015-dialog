@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>dialog要素</title>
+<style>
+dialog {
+}
+</style>
+</head>
+<body>
+
+<div style="position: relative; top: 100px;">
+  <dialog>
+    <p>The quick brown fox jumps over the lazy dog.</p>
+    <button id="close">閉じる</button>
+  </dialog>
+  <button id="show">モードレスダイアログとして開く</button>
+  <button id="showModal">モーダルダイアログとして開く</button>
+</div>
+
+<script>
+var dialog = document.querySelector('dialog');
+var btn_show = document.getElementById('show');
+var btn_showModal = document.getElementById('showModal');
+var btn_close = document.getElementById('close');
+btn_show.addEventListener('click', function() {
+  dialog.show();
+  btn_show.disabled = true;
+  btn_showModal.disabled = true;
+}, false);
+btn_showModal.addEventListener('click', function() {
+  dialog.showModal();
+  btn_show.disabled = true;
+  btn_showModal.disabled = true;
+}, false);
+btn_close.addEventListener('click', function() {
+  dialog.close();
+  btn_show.disabled = false;
+  btn_showModal.disabled = false;
+}, false);
+</script>
+
+
+</body>
+</html>

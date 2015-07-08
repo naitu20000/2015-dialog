@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<title>dialog要素</title>
+<style>
+.toolbar {
+  position: relative;
+  height: 40px;
+  background-color: #34495e;
+}
+.toolbar__button {
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 40px;
+  padding: 8px;
+  border: 0;
+  font-size: 16px;
+  background-color: #2ecc71;
+  color: #fff;
+}
+.toolbar__button[disabled] {
+  color: #73DFA0;
+}
+.toolbar__dialog {
+  box-sizing: border-box;
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  left: auto;
+  border: 0;
+  width: 300px;
+  padding: 10px;
+  text-align: center;
+  color: #fff;
+  background-color: #3498db;
+}
+.toolbar__dialog::before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  margin: auto;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 10px solid #3498db;
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button class="toolbar__button" id="show"><i class="fa fa-bars"></i> モードレスダイアログとして開く</button>
+  <dialog class="toolbar__dialog">
+    <p>これはモードレスダイアログです</p>
+    <button id="close">モードレスダイアログを閉じる</button>
+  </dialog>
+</div>
+
+<script>
+var dialog = document.querySelector('dialog');
+var btn_show = document.getElementById('show');
+var btn_close = document.getElementById('close');
+btn_show.addEventListener('click', function() {
+  dialog.show();
+  btn_show.disabled = true;
+}, false);
+btn_close.addEventListener('click', function() {
+  dialog.close();
+  btn_show.disabled = false;
+}, false);
+</script>
+
+
+</body>
+</html>

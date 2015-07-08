@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>dialog要素</title>
+<style>
+dialog {
+}
+dialog::backdrop {
+  background-color: tomato;
+}
+</style>
+</head>
+<body>
+
+<dialog>
+  <p>これはモーダルダイアログです</p>
+  <button id="close">モーダルダイアログを閉じる</button>
+</dialog>
+<button id="showModal">モーダルダイアログとして開く</button>
+
+<script>
+var dialog = document.querySelector('dialog');
+var btn_showModal = document.getElementById('showModal');
+var btn_close = document.getElementById('close');
+btn_showModal.addEventListener('click', function() {
+  dialog.showModal();
+}, false);
+btn_close.addEventListener('click', function() {
+  dialog.close();
+}, false);
+</script>
+
+
+</body>
+</html>

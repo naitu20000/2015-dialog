@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>dialog要素</title>
+<style>
+/* dialogの見た目 */
+.dialog {
+  width: 80%;
+  height: 150px;
+  background-color: #fff;
+  border: 0;
+  margin: 0;
+  top: 0;
+  left: 0;
+  margin: 0 auto;
+}
+/* backdrop擬似要素の背景色 */
+.dialog::backdrop {
+  background-color: #000;
+}
+/* モーダル内のテキスト */
+.dialog__message {
+  color: #333;
+}
+/* モーダルを閉じるボタンの見た目 */
+.dialog__close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background-color: #ff6347;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+}
+.dialog__close-button:focus {
+  outline: 0;
+}
+/* ダイアログが開く時のスタイル */
+.dialog.is-opened {
+  transform: translateY(-100%);
+  animation: 250ms show_dialog;
+  animation-fill-mode: forwards;
+  animation-delay: 500ms;
+}
+@keyframes show_dialog {
+  from { transform: translateY(-100%); }
+  to { top: 50%; transform: translateY(-50%); }
+}
+/* ダイアログが開く時のbackdrop擬似要素のスタイル */
+.dialog.is-opened::backdrop {
+  opacity: 0;
+  animation: 250ms show_backdrop;
+  animation-fill-mode: forwards;
+}
+@keyframes show_backdrop {
+  from { opacity: 0; }
+  to { opacity: 0.5; }
+}
+/* ダイアログが閉じる時のスタイル */
+.dialog.is-closed {
+  transform: translateY(-100%);
+  animation: 250ms close_dialog;
+  animation-delay: 0s;
+  animation-fill-mode: forwards;
+}
+@keyframes close_dialog {
+  from { top: 50%; transform: translateY(-50%); }
+  to { top: 0; transform: translateY(-100%); }
+}
+/* ダイアログが閉じる時のbackdrop擬似要素のスタイル */
+.dialog.is-closed::backdrop {
+  opacity: 0.5;
+  animation: 250ms close_backdrop;
+  animation-fill-mode: forwards;
+  animation-delay: 500ms;
+}
+@keyframes close_backdrop {
+  from { opacity: 0.5; }
+  to { opacity: 0; }
+}
+</style>
+</head>
+<body>
+
+<dialog class="dialog">
+  <p class="dialog__message">これはモーダルダイアログです</p>
+  <button class="dialog__close-button" id="close">☓</button>
+</dialog>
+<button id="showModal">モーダルダイアログを開く</button>
+
+<script>
+var dialog = document.querySelector('dialog');
+var btn_showModal = document.getElementById('showModal');
+var btn_close = document.getElementById('close');
+
+//ダイアログを開く時に、アニメーションさせる関数
+function openDialog() {
+  dialog.classList.add('is-opened');
+  dialog.showModal();
+  btn_showModal.disabled = true;
+};
+
+//ダイアログが閉じきる前に、アニメーションさせる関数
+function closeDialog() {
+  dialog.classList.remove('is-opened');
+  dialog.classList.add('is-closed');
+  btn_showModal.disabled = false;
+};
+
+// ボタンが押された時に、ダイアログを開く
+btn_showModal.addEventListener('click', function() {
+  openDialog();
+}, false);
+
+// ボタンが押された時に、ダイアログを閉じる
+btn_close.addEventListener('click', function() {
+  closeDialog();
+}, false);
+
+// Escapeキーを押した時にすぐ閉じないようにする
+dialog.addEventListener('cancel', function(e) {
+  e.preventDefault();
+  closeDialog();
+}, false);
+
+// dialog要素が閉じきった時にis-closedを外す
+dialog.addEventListener('animationend', function(e) {
+  if (e.animationName === 'close_backdrop') {
+    dialog.classList.remove('is-closed');
+    dialog.close();
+  }
+}, false);
+
+</script>
+
+</body>
+</html>
