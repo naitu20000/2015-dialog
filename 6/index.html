@@ -39,7 +39,7 @@ btn_show.addEventListener('click', function() {
   dialog.showModal();
 }, false);
 btn_close.addEventListener('click', function() {
-  var value = document.querySelector('#input_value').value;
+  var value = document.getElementById('input_value').value;
   dialog.close(value);
 }, false);
 dialog.addEventListener('close', function(event){
