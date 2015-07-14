@@ -12,31 +12,43 @@ dialog {
 <body>
 
 <div style="position: relative; top: 100px;">
-  <dialog>
+  <dialog id="dialog1">
     <p>The quick brown fox jumps over the lazy dog.</p>
-    <button id="close">閉じる</button>
+    <button id="close1">閉じる</button>
   </dialog>
-  <button id="show">モードレスダイアログとして開く</button>
-  <button id="showModal">モーダルダイアログとして開く</button>
+  <dialog id="dialog2">
+    <p>The quick brown fox jumps over the lazy dog.</p>
+    <button id="close2">閉じる</button>
+  </dialog>
+  <button id="show">モードレスダイアログを開く</button>
+  <button id="showModal">モーダルダイアログを開く</button>
 </div>
 
 <script>
-var dialog = document.querySelector('dialog');
+var dialog1 = document.getElementById('dialog1');
+var dialog2 = document.getElementById('dialog2');
 var btn_show = document.getElementById('show');
 var btn_showModal = document.getElementById('showModal');
-var btn_close = document.getElementById('close');
+var btn_close1 = document.getElementById('close1');
+var btn_close2 = document.getElementById('close2');
+
 btn_show.addEventListener('click', function() {
-  dialog.show();
+  dialog1.show();
   btn_show.disabled = true;
   btn_showModal.disabled = true;
 }, false);
 btn_showModal.addEventListener('click', function() {
-  dialog.showModal();
+  dialog2.showModal();
   btn_show.disabled = true;
   btn_showModal.disabled = true;
 }, false);
-btn_close.addEventListener('click', function() {
-  dialog.close();
+btn_close1.addEventListener('click', function() {
+  dialog1.close();
+  btn_show.disabled = false;
+  btn_showModal.disabled = false;
+}, false);
+btn_close2.addEventListener('click', function() {
+  dialog2.close();
   btn_show.disabled = false;
   btn_showModal.disabled = false;
 }, false);
